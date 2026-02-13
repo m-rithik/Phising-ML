@@ -1,0 +1,21 @@
+languages:
+  - hi
+  - bn
+  - ta
+  - te
+  - mr
+  - gu
+  - kn
+  - ml
+  - pa
+  - or
+  - ur
+  - hi-mix
+models:
+  semantic_model_name: "multilingual-transformer"
+  char_model_name: "char-cnn"
+thresholds:
+  default: 0.5
+  high_risk: 0.65
+calibration:
+  per_language: true
