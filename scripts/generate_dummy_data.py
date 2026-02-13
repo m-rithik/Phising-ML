@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import random
 from datetime import datetime, timedelta
@@ -10,7 +11,7 @@ random.seed(42)
 
 OUT_DIR = Path("data/raw/synthetic")
 SOURCES = ["sms", "email", "chat"]
-SAMPLES_PER_CLASS_PER_SOURCE = 8
+DEFAULT_SAMPLES_PER_CLASS_PER_SOURCE = 8
 
 BRANDS = ["SBI", "HDFC", "ICICI", "Axis", "Kotak", "PNB", "BOB", "Paytm", "PhonePe", "GPay", "Airtel", "Jio"]
 UPI_IDS = ["user@upi", "pay@okicici", "name@oksbi", "pay@okhdfc", "txn@okaxis"]
@@ -444,10 +445,19 @@ def write_manifest(counts: Dict[str, Dict[str, int]]) -> None:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--per-class-per-source",
+        type=int,
+        default=DEFAULT_SAMPLES_PER_CLASS_PER_SOURCE,
+        help="Number of samples per class (phish/benign) per language per source.",
+    )
+    args = parser.parse_args()
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     counts: Dict[str, Dict[str, int]] = {}
     for source in SOURCES:
-        rows = generate_samples_for_source(source, samples_per_class=SAMPLES_PER_CLASS_PER_SOURCE)
+        rows = generate_samples_for_source(source, samples_per_class=args.per_class_per_source)
         out_path = OUT_DIR / f"{source}.jsonl"
         with open(out_path, "w", encoding="utf-8") as f:
             for row in rows:

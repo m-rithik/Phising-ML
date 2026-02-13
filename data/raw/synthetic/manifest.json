@@ -1,17 +1,17 @@
 {
   "sms": {
-    "total": 192,
-    "phish": 96,
-    "benign": 96
+    "total": 1200,
+    "phish": 600,
+    "benign": 600
   },
   "email": {
-    "total": 192,
-    "phish": 96,
-    "benign": 96
+    "total": 1200,
+    "phish": 600,
+    "benign": 600
   },
   "chat": {
-    "total": 192,
-    "phish": 96,
-    "benign": 96
+    "total": 1200,
+    "phish": 600,
+    "benign": 600
   }
 }

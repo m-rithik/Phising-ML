@@ -9,3 +9,8 @@ Files:
 - `manifest.json`: counts by source
 
 Each line is a JSON object with fields from `docs/data-schema.md`.
+
+
+langs added:
+
+hi, bn, ta, te, mr, gu, kn, ml, pa, or, ur, hi-mix
